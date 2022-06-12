@@ -3,7 +3,7 @@ Simple app to upload an image via a web form
 and view the inference results on the image in the browser.
 """
 import argparse
-from asyncio.windows_events import NULL
+#from asyncio.windows_events import NULL
 import io
 import os
 from PIL import Image
@@ -172,5 +172,5 @@ if __name__ == "__main__":
 
     model.eval()
     # debug=True causes Restarting with stat
-    PORT = int(os.environ.get('PORT', 5000))
-    app.run(host="0.0.0.0", port=PORT, debug=True)
+    #PORT = int(os.environ.get('PORT', 5000))
+    app.run(debug=True)
