@@ -21,6 +21,8 @@ reader = easyocr.Reader(['ar'])
 app = Flask(__name__)
 
 global model
+
+
 @app.route("/", methods=["GET", "POST"])
 def predict():
     if request.method == "POST":
@@ -32,9 +34,8 @@ def predict():
 
         img_bytes = file.read()
         img = Image.open(io.BytesIO(img_bytes))
-        curr_path = os.path.abspath(os.getcwd())
         model = torch.hub.load(
-            'ultralytics/yolov5', 'custom', path=curr_path+"/best2.pt"
+            'ultralytics/yolov5', 'custom', path="static/best2.pt", force_reload=True
         )
         model.eval()
         results = model(img, size=640)
@@ -171,11 +172,11 @@ if __name__ == "__main__":
     # parser.add_argument("--port", default=5000, type=int, help="port number")
     # args = parser.parse_args()
 
-    #model = torch.hub.load(
+    # model = torch.hub.load(
     #         'ultralytics/yolov5', 'custom', path=dir_path+"/best2.pt"
     #     )
 
-    #model.eval()
+    # model.eval()
     # debug=True causes Restarting with stat
     #PORT = int(os.environ.get('PORT', 5000))
     app.run(debug=True)
