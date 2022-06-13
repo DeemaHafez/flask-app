@@ -20,7 +20,7 @@ reader = easyocr.Reader(['ar'])
 
 app = Flask(__name__)
 
-
+global model
 @app.route("/", methods=["GET", "POST"])
 def predict():
     if request.method == "POST":
