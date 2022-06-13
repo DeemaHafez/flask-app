@@ -5,6 +5,9 @@ requests
 gunicorn==20.1.0
 matplotlib>=3.2.2
 numpy>=1.18.5
+libsm6 
+libxrender1 
+libfontconfig1
 opencv-python>=4.1.2
 #opencv-contrib-python
 Pillow
