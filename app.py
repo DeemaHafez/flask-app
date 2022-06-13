@@ -32,6 +32,11 @@ def predict():
 
         img_bytes = file.read()
         img = Image.open(io.BytesIO(img_bytes))
+        curr_path = os.path.abspath(os.getcwd())
+        model = torch.hub.load(
+            'ultralytics/yolov5', 'custom', path=curr_path+"/best2.pt"
+        )
+        model.eval()
         results = model(img, size=640)
         crops = results.crop(save=True)
 
@@ -160,17 +165,17 @@ def predict():
 
 
 if __name__ == "__main__":
-    dir_path = os.path.abspath(os.getcwd())
+    #dir_path = os.path.abspath(os.getcwd())
     # parser = argparse.ArgumentParser(
     #     description="Flask app exposing yolov5 models")
     # parser.add_argument("--port", default=5000, type=int, help="port number")
     # args = parser.parse_args()
 
-    model = torch.hub.load(
-        'ultralytics/yolov5', 'custom', path=dir_path+"/best2.pt"
-    )
+    #model = torch.hub.load(
+    #         'ultralytics/yolov5', 'custom', path=dir_path+"/best2.pt"
+    #     )
 
-    model.eval()
+    #model.eval()
     # debug=True causes Restarting with stat
     #PORT = int(os.environ.get('PORT', 5000))
     app.run(debug=True)
